@@ -357,7 +357,7 @@ lastTime = performance.now()
 requestAnimationFrame(step)
 
 document.addEventListener('click', e => {
-  if (s6CreditLabel.contains(e.target) || [s6CreditCheckbox, s6CreditLink].includes(e.target)) {
+  if ((s6CreditLabel && s6CreditLabel.contains(e.target)) || [s6CreditCheckbox, s6CreditLink].includes(e.target)) {
     return
   }
   if (!document.fullscreenElement) {
@@ -495,6 +495,12 @@ function step2() {
   update()
   draw()
 }
+document.addEventListener('click', function() {
+  // Create an AudioContext after a user click
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // Your audio-related code here
+}, { once: true });
 
 init()
 step2()
